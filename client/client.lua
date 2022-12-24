@@ -1,4 +1,4 @@
-local QRCore = exports['qr-core']:GetCoreObject()
+local RSGCore = exports['rsg-core']:GetCoreObject()
 local goldsmelt = false
 
 ------------------------------------------------------------------------------------------------------
@@ -13,7 +13,7 @@ AddEventHandler('rsg-goldsmelt:client:setupgoldsmelt', function()
 		ClearPedTasks(ped)
         SetEntityAsMissionEntity(smelt)
         DeleteObject(smelt)
-		QRCore.Functions.Notify('gold smelt put away', 'primary')
+		RSGCore.Functions.Notify('gold smelt put away', 'primary')
 		goldsmelt = false
     elseif goldsmelt == false then
 		CrouchAnim()
@@ -24,7 +24,7 @@ AddEventHandler('rsg-goldsmelt:client:setupgoldsmelt', function()
 		SetEntityHeading(prop, GetEntityHeading(PlayerPedId()))
 		PlaceObjectOnGroundProperly(prop)
 		smelt = prop
-		QRCore.Functions.Notify('gold smelt deployed', 'primary')
+		RSGCore.Functions.Notify('gold smelt deployed', 'primary')
 		goldsmelt = true
 	end
 end, false)
@@ -41,7 +41,7 @@ Citizen.CreateThread(function()
 				if #(pos - objectPos) < 3.0 then
 					awayFromObject = false
 					DrawText3Ds(objectPos.x, objectPos.y, objectPos.z + 1.0, "Smelt Gold [J]")
-					if IsControlJustReleased(0, QRCore.Shared.Keybinds['J']) then
+					if IsControlJustReleased(0, RSGCore.Shared.Keybinds['J']) then
 						TriggerEvent('rsg-goldsmelt:client:smeltmenu')
 					end
 				end
@@ -68,7 +68,7 @@ RegisterNetEvent('rsg-goldsmelt:client:smeltmenu', function()
         local item = {}
         local text = ""
         for k, v in pairs(v.smeltitems) do
-            text = text .. "- " .. QRCore.Shared.Items[v.item].label .. ": " .. v.amount .. "x <br>"
+            text = text .. "- " .. RSGCore.Shared.Items[v.item].label .. ": " .. v.amount .. "x <br>"
         end
         smeltMenu[#smeltMenu + 1] = {
             header = k,
@@ -88,17 +88,17 @@ RegisterNetEvent('rsg-goldsmelt:client:smeltmenu', function()
         header = "❌ | Close Menu",
         txt = '',
         params = {
-            event = 'qr-menu:closeMenu',
+            event = 'rsg-menu:closeMenu',
         }
     }
-    exports['qr-menu']:openMenu(smeltMenu)
+    exports['rsg-menu']:openMenu(smeltMenu)
 end)
 
 ------------------------------------------------------------------------------------------------------
 
 -- check player has the items
 RegisterNetEvent('rsg-goldsmelt:client:checkinggolditems', function(data)
-	QRCore.Functions.TriggerCallback('rsg-goldsmelt:server:checkinggolditems', function(hasRequired)
+	RSGCore.Functions.TriggerCallback('rsg-goldsmelt:server:checkinggolditems', function(hasRequired)
     if (hasRequired) then
 		if Config.Debug == true then
 			print("passed")
@@ -116,7 +116,7 @@ end)
 -- do smelting
 RegisterNetEvent('rsg-goldsmelt:client:dosmelt', function(name, item, smelttime, receive)
 	local smeltitems = Config.SmeltOptions[item].smeltitems
-	QRCore.Functions.Progressbar('smelt-gold', 'Smelting a '..name, smelttime, false, true, {
+	RSGCore.Functions.Progressbar('smelt-gold', 'Smelting a '..name, smelttime, false, true, {
 		disableMovement = true,
 		disableCarMovement = false,
 		disableMouse = false,

@@ -9,7 +9,7 @@ Config.SmeltProps = {
 Config.SmeltOptions = {
 
     ["Large Nugget Gold Bar"] = {
-		name = "Gold Bar",
+		name = Lang:t('text.gold_bar'),
         smelttime = 20000,
         smeltitems = {
             [1] = { item = "largenugget", amount = 20 },
@@ -18,7 +18,7 @@ Config.SmeltOptions = {
     },
 	
     ["Medium Nugget Gold Bar"] = {
-		name = "Gold Bar",
+		name = Lang:t('text.gold_bar'),
         smelttime = 20000,
         smeltitems = {
             [1] = { item = "mediumnugget", amount = 40 },
@@ -27,7 +27,7 @@ Config.SmeltOptions = {
     },
 	
     ["Small Nugget Gold Bar"] = {
-		name = "Gold Bar",
+		name = Lang:t('text.gold_bar'),
         smelttime = 20000,
         smeltitems = {
             [1] = { item = "smallnugget", amount = 80 },

@@ -19,7 +19,7 @@ RSGCore.Functions.CreateCallback('rsg-goldsmelt:server:checkinggolditems', funct
 				cb(true)
 			end
 		else
-			TriggerClientEvent('RSGCore:Notify', src, 'You don\'t have the required items!', 'error')
+			TriggerClientEvent('RSGCore:Notify', src, Lang:t('error.you_donthave_the_required_items'), 'error')
 			cb(false)
 			return
 		end
@@ -43,5 +43,5 @@ AddEventHandler('rsg-goldsmelt:server:finishsmelting', function(smeltitems, rece
 	-- add items
 	Player.Functions.AddItem(receive, 1)
 	TriggerClientEvent('inventory:client:ItemBox', src, RSGCore.Shared.Items[receive], "add")
-	TriggerClientEvent('RSGCore:Notify', src, 'smelting finished', 'success')
+	TriggerClientEvent('RSGCore:Notify', src, Lang:t('success.smelting_finished'), 'success')
 end)

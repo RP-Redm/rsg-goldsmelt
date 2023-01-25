@@ -24,7 +24,7 @@ AddEventHandler('rsg-goldsmelt:client:setupgoldsmelt', function()
 		SetEntityHeading(prop, GetEntityHeading(PlayerPedId()))
 		PlaceObjectOnGroundProperly(prop)
 		smelt = prop
-		RSGCore.Functions.Notify('gold smelt deployed', 'primary')
+		RSGCore.Functions.Notify(Lang:t('primary.gold_smelt_deployed'), 'primary')
 		goldsmelt = true
 	end
 end, false)
@@ -60,7 +60,7 @@ RegisterNetEvent('rsg-goldsmelt:client:smeltmenu', function()
     smeltMenu = {}
     smeltMenu = {
         {
-            header = "☢️ | Smelting Menu",
+            header = Lang:t('menu.smelting_menu'),
             isMenuHeader = true,
         },
     }
@@ -85,7 +85,7 @@ RegisterNetEvent('rsg-goldsmelt:client:smeltmenu', function()
         }
     end
     smeltMenu[#smeltMenu + 1] = {
-        header = "❌ | Close Menu",
+        header = Lang:t('menu.close_menu'),
         txt = '',
         params = {
             event = 'rsg-menu:closeMenu',
@@ -116,7 +116,7 @@ end)
 -- do smelting
 RegisterNetEvent('rsg-goldsmelt:client:dosmelt', function(name, item, smelttime, receive)
 	local smeltitems = Config.SmeltOptions[item].smeltitems
-	RSGCore.Functions.Progressbar('smelt-gold', 'Smelting a '..name, smelttime, false, true, {
+	RSGCore.Functions.Progressbar('smelt-gold', Lang:t('progressbar.smelting_a')..name, smelttime, false, true, {
 		disableMovement = true,
 		disableCarMovement = false,
 		disableMouse = false,

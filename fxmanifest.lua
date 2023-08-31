@@ -6,6 +6,7 @@ author 'RexShack#3041'
 description 'rsg-goldsmelt'
 
 shared_scripts {
+    '@ox_lib/init.lua',
     '@rsg-core/shared/locale.lua',
     'locales/en.lua',
     'locales/*.lua',
@@ -13,14 +14,16 @@ shared_scripts {
 }
 
 client_script {
-	'client/client.lua'
+    'client/client.lua'
 }
 
 server_script {
-	'server/server.lua'
+    'server/server.lua'
 }
 
-dependency 'rsg-core'
-dependency 'rsg-menu'
+dependencies {
+    'rsg-core',
+    'ox_lib',
+}
 
 lua54 'yes'
